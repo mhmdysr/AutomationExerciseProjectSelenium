@@ -28,12 +28,30 @@ public class CartPage extends BasePage {
     public void goToCartPage(){
         click(CommonLocators.carTLink);
     }
-    //Methods =>TC12: Add Products in Cart[product+cart]
-    //public Boolean areBothAddedProductsVisible(){
 
-        //firstAddedProduct
-        //secondAddedProduct
-    //}
+    //Methods =>TC12: Add Products in Cart[product+cart]
+    public Boolean areBothAddedProductsVisible(){
+        return isElementDisplayed(firstAddedProduct) && isElementDisplayed(secondAddedProduct);
+    }
+
+    private final By priceCellsToAddedProduct=By.xpath("//td[@class='cart_price']");
+    private  final By quantityInputsToAddedProduct=By.xpath("//td[@class='cart_quantity']");
+    private  final By totalPriceCellsToAddedProduct=By.xpath("//td[@class='cart_total']");
+    //verifyTheirPricesQuantityAndTotalPrice
+    public String getPriceToAddedProduct(int index ){
+        return driver.findElements(priceCellsToAddedProduct).get(index).getText();
+
+    }
+    public String getQuantityToAddedProduct(int index ){
+
+        return driver.findElements(quantityInputsToAddedProduct).get(index).getText();
+
+    }
+    public String getTotalPriceToAddedProduct(int index ){
+
+        return driver.findElements(totalPriceCellsToAddedProduct).get(index).getText();
+
+    }
 
 
 

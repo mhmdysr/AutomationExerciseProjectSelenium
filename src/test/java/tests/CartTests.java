@@ -38,33 +38,34 @@ public class CartTests extends BaseTest {
 
     }
     @Test
-    public void tc_02_addProductsInCart(){
+    public void tc_12_addProductsInCart(){
         SoftAssert softAssert=new SoftAssert();
         productPage=new ProductPage(driver);
         cartPage=new CartPage(driver);
 
-        Assert.assertTrue(productPage.isHomePageVisible(),"Home Page is Not Visible!");
+        softAssert.assertTrue(productPage.isHomePageVisible(),"Home Page is Not Visible!");
         productPage.goToProductsPage();
         productPage.scrollToBrandsHeader();
         productPage.hoverClickProductByIndex(1,1);
         productPage.clickContinueShoppingBtn();
-        productPage.hoverClickProductByIndex(2,1);
-        productPage.clickViewProductByIndex(1);
+        productPage.hoverClickProductByIndex(2,3);
+        productPage.clickViewCartByIndex(1);
 
         // Verify both products are added to Cart
-        //Assert.assertTrue(cartPage.areBothAddedProductsVisible(),"Both products are Not added to Cart ");
-//
-//        //Verify their prices, quantity and total price
-//
-//        // first added product
-//        Assert.assertEquals(productsPage.getPrice(0),"Rs. 500","The First Product Price not as expected ");
-//        Assert.assertEquals(productsPage.getQuantity(0),"1","The First Product Quantity not as expected ");
-//        Assert.assertEquals(productsPage.getTotalPrice(0),"Rs. 500","The First Total Product Price not as expected ");
-//
-//        // second added product
-//        Assert.assertEquals(productsPage.getPrice(1),"Rs. 400","The second Product Price not as expected ");
-//        Assert.assertEquals(productsPage.getQuantity(1),"1","The second Product Quantity not as expected ");
-//        Assert.assertEquals(productsPage.getTotalPrice(1),"Rs. 400","The second Total Product Price not as expected ");
+        Assert.assertTrue(cartPage.areBothAddedProductsVisible(),"Both products are Not added to Cart ");
+
+        //Verify their prices, quantity and total price
+
+        // first added product
+
+        Assert.assertEquals(cartPage.getPriceToAddedProduct(0),"Rs. 500","The First Product Price not as expected ");
+        Assert.assertEquals(cartPage.getQuantityToAddedProduct(0),"1","The First Product Quantity not as expected ");
+        Assert.assertEquals(cartPage.getTotalPriceToAddedProduct(0),"Rs. 500","The First Total Product Price not as expected ");
+
+        // second added product
+        Assert.assertEquals(cartPage.getPriceToAddedProduct(1),"Rs. 400","The second Product Price not as expected ");
+        Assert.assertEquals(cartPage.getQuantityToAddedProduct(1),"1","The second Product Quantity not as expected ");
+        Assert.assertEquals(cartPage.getTotalPriceToAddedProduct(1),"Rs. 400","The second Total Product Price not as expected ");
 
 
 
@@ -72,4 +73,9 @@ public class CartTests extends BaseTest {
 
 
     }
+    @Test
+    public void  tc_13_verifyProductQuantityInCart(){
+
+    }
+
 }

@@ -21,6 +21,10 @@ public class ProductPage extends BasePage {
     private By getViewProductByIndex(int index) {
         return By.xpath("(//*[text()='View Product'])[" + index + "]");
     }
+    private By getViewCartByIndex(int index) {
+        return By.xpath("(//*[text()='View Cart'])[" + index + "]");
+    }
+
 
     //Locators TC_9 =>Search Product
     private final By searchInputField=By.cssSelector("input[id='search_product']");
@@ -133,6 +137,15 @@ public class ProductPage extends BasePage {
     public void clickContinueShoppingBtn(){
         click(continueShoppingBtn);
     }
+    public void clickViewCartByIndex(int index){
+        click(getViewCartByIndex(index));
+
+
+    }
+
+
+
+
 
 
 
