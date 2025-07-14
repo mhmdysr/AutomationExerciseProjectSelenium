@@ -75,6 +75,26 @@ public class CartTests extends BaseTest {
     }
     @Test
     public void  tc_13_verifyProductQuantityInCart(){
+        SoftAssert softAssert=new SoftAssert();
+        cartPage=new CartPage(driver);
+        productPage=new ProductPage(driver);
+
+        softAssert.assertTrue(productPage.isHomePageVisible(),"Home Page is Not Visible!");
+        productPage.scrollToBrandsHeader();
+        productPage.clickViewProductByIndex(1);
+
+        Assert.assertTrue(productPage.isProductDetailsDisplayed(),"Product Details Elements is Not Visible!");
+
+        //Increase quantity
+        productPage.increaseProductQuantity("4");
+        productPage.addToCartBtnInProductDetailsPage();
+        productPage.clickViewCartByIndex(1);
+
+        // Verify that product is displayed in cart page with exact quantity
+        Assert.assertEquals(cartPage.getPriceToAddedProduct(0),"Rs. 500","The First Product Price not as expected ");
+        Assert.assertEquals(cartPage.getQuantityToAddedProduct(0),"4","The First Product Quantity not as expected ");
+        Assert.assertEquals(cartPage.getTotalPriceToAddedProduct(0),"Rs. 2000","The First Total Product Price not as expected ");
+
 
     }
 

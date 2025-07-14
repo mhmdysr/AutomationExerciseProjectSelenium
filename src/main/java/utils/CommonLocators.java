@@ -19,6 +19,8 @@ public class CommonLocators {
     public static final By searchedProductName = By.xpath("//div[@class='productinfo text-center']//p");
     public static final By searchedProductPrice = By.xpath("//div[@class='productinfo text-center']//h2");
     public static final By carTLink=By.linkText("Cart");
+    public static final By productDetailsClass=By.className("product-details");
+
 
 
 

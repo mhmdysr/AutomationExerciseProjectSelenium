@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.CommonLocators;
 
+
 public class ProductPage extends BasePage {
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -30,6 +31,11 @@ public class ProductPage extends BasePage {
     private final By searchInputField=By.cssSelector("input[id='search_product']");
     private final By searchBtn=By.cssSelector("button[id='submit_search']");
     private final By searchedProductsHeader=By.xpath("//h2[text()='Searched Products']");
+    //Locators =TC_13: Verify Product quantity in Cart
+    private final By productQuantityInput=By.id("quantity");
+    private final By addToCartBtnInProductDetails=By.cssSelector("button[type='button']");
+
+
 
 
 
@@ -141,6 +147,18 @@ public class ProductPage extends BasePage {
         click(getViewCartByIndex(index));
 
 
+    }
+
+    //Methods =>TC_13: Verify Product quantity in Cart
+
+    public Boolean isProductDetailsDisplayed(){
+        return isElementDisplayed(CommonLocators.productDetailsClass);
+    }
+    public void increaseProductQuantity(String quantityNo){
+        type(productQuantityInput,quantityNo);
+    }
+    public void addToCartBtnInProductDetailsPage(){
+        click(addToCartBtnInProductDetails);
     }
 
 

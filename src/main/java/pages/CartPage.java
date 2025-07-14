@@ -37,7 +37,8 @@ public class CartPage extends BasePage {
     private final By priceCellsToAddedProduct=By.xpath("//td[@class='cart_price']");
     private  final By quantityInputsToAddedProduct=By.xpath("//td[@class='cart_quantity']");
     private  final By totalPriceCellsToAddedProduct=By.xpath("//td[@class='cart_total']");
-    //verifyTheirPricesQuantityAndTotalPrice
+
+    //verifyTheirPricesQuantityAndTotalPrice from the Cart Page
     public String getPriceToAddedProduct(int index ){
         return driver.findElements(priceCellsToAddedProduct).get(index).getText();
 
