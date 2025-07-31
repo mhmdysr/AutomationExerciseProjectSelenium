@@ -18,7 +18,7 @@ public class SignupPage extends BasePage {
     private final By enterAccountInfoText = By.xpath("//b[text()='Enter Account Information']");
     private final By initialNameField = By.cssSelector("input[type='text']");
     private final By emailAddressField = By.cssSelector("input[data-qa='signup-email']");
-    private final By signupBtn = By.cssSelector("button[data-qa='signup-button']");
+    private final By signupSubmitBtn = By.cssSelector("button[data-qa='signup-button']");
 
 
     // Locators (adjust these to match your application)
@@ -76,8 +76,8 @@ public class SignupPage extends BasePage {
         type(emailAddressField, userEmail);
     }
 
-    public void clickSignupBtn() {
-        click(signupBtn);
+    public void clickSignupSubmitBtn() {
+        click(signupSubmitBtn);
     }
 
     public Boolean isEnterAccountInfoTextDisplayed() {

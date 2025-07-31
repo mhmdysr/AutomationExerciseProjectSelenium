@@ -2,10 +2,7 @@ package pages;
 
 import base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.CommonLocators;
 
 public class CartPage extends BasePage {
@@ -17,6 +14,14 @@ public class CartPage extends BasePage {
     //Locators =>TC12: Add Products in Cart[product +cart]
     private final By firstAddedProduct=By.linkText("Blue Top");
     private final By secondAddedProduct=By.linkText("Men Tshirt");
+    private final By priceCellsToAddedProduct=By.xpath("//td[@class='cart_price']");
+    private  final By quantityInputsToAddedProduct=By.xpath("//td[@class='cart_quantity']");
+    private  final By totalPriceCellsToAddedProduct=By.xpath("//td[@class='cart_total']");
+    private final By shoppingCartHeader= By.xpath("//*[text()='Shopping Cart']");
+    private final By proceedToCheckoutBtn=By.cssSelector("a[class='btn btn-default check_out']");
+    private final By signupLoginLink=By.linkText("Register / Login");
+
+
 
 
 
@@ -34,9 +39,6 @@ public class CartPage extends BasePage {
         return isElementDisplayed(firstAddedProduct) && isElementDisplayed(secondAddedProduct);
     }
 
-    private final By priceCellsToAddedProduct=By.xpath("//td[@class='cart_price']");
-    private  final By quantityInputsToAddedProduct=By.xpath("//td[@class='cart_quantity']");
-    private  final By totalPriceCellsToAddedProduct=By.xpath("//td[@class='cart_total']");
 
     //verifyTheirPricesQuantityAndTotalPrice from the Cart Page
     public String getPriceToAddedProduct(int index ){
@@ -53,6 +55,19 @@ public class CartPage extends BasePage {
         return driver.findElements(totalPriceCellsToAddedProduct).get(index).getText();
 
     }
+
+    //Methods =>TC14: Place Order: Register while Checkout
+
+    public boolean isCartPageDisplayed(){
+        return isElementDisplayed(shoppingCartHeader);
+    }
+    public void clickProceedToCheckout(){
+        click(proceedToCheckoutBtn);
+    }
+    public void clickSignupLoginLink(){
+        click(signupLoginLink);
+    }
+
 
 
 

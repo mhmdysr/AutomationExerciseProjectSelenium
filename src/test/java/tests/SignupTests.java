@@ -24,7 +24,7 @@ public class SignupTests extends BaseTest {
         signupPage.goToSignInPage();
         softAssert.assertTrue(signupPage.isNewUserSignupDisplayed(),"New User Signup! Text is NOT visible!");
         signupPage.setUserNameAndEmailAddress(nameOfUser,userEmail);
-        signupPage.clickSignupBtn();
+        signupPage.clickSignupSubmitBtn();
 
         softAssert.assertTrue(signupPage.isEnterAccountInfoTextDisplayed(),"Enter Account Information Text is NOT visible!");
         signupPage.fillAccountInformation("Mrs",nameOfUser,password,1,1,1);
@@ -73,7 +73,7 @@ public class SignupTests extends BaseTest {
 
         //Reading from config.properties
         signupPage.setUserNameAndEmailAddress(ConfigReader.getProperty("loginValidName1"),ConfigReader.getProperty("loginValidEmail1"));
-        signupPage.clickSignupBtn();
+        signupPage.clickSignupSubmitBtn();
 
         softAssert.assertTrue(signupPage.isEmailAlreadyExistTextVisible(),"Email Already Exist Text is NOT visible!");
 
