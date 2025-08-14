@@ -68,6 +68,9 @@ public class CartPage extends BasePage {
         click(signupLoginLink);
     }
 
+    //TC16: Place Order: Login before Checkout
+
+
 
 
 
