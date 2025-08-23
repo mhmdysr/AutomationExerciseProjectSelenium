@@ -20,6 +20,8 @@ public class CartPage extends BasePage {
     private final By shoppingCartHeader= By.xpath("//*[text()='Shopping Cart']");
     private final By proceedToCheckoutBtn=By.cssSelector("a[class='btn btn-default check_out']");
     private final By signupLoginLink=By.linkText("Register / Login");
+    private final By removeBtn=By.cssSelector("[class='fa fa-times']");
+    private final By cartEmptyVisible=By.xpath("//b[text()='Cart is empty!']");
 
 
 
@@ -31,7 +33,7 @@ public class CartPage extends BasePage {
         return isElementDisplayed(CommonLocators.homePageText);
     }
     public void goToCartPage(){
-        click(CommonLocators.carTLink);
+        click(CommonLocators.cartLink);
     }
 
     //Methods =>TC12: Add Products in Cart[product+cart]
@@ -69,6 +71,20 @@ public class CartPage extends BasePage {
     }
 
     //TC16: Place Order: Login before Checkout
+
+
+    public void removeAllProducts(){
+        int productsRemoved=driver.findElements(removeBtn).size();
+        for(int i=0;i<productsRemoved;i++){
+
+            driver.findElements(removeBtn).get(i).click();
+        }
+    }
+
+    public Boolean isCartEmpty(){
+
+    return isElementDisplayed(cartEmptyVisible);
+    }
 
 
 

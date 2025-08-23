@@ -196,14 +196,6 @@ public class CheckoutTests extends BaseTest {
         checkoutPage.clickPayAndConfirmOrderBtn();
         softAssert.assertTrue(checkoutPage.isYourOrderPlacedSuccessfullyMessageVisible(),"Your order has been placed successfully! Message is Not Visible");
         // i will not delete the ACC i  need it LOL
-
-
-
-
-
-
-
-
         softAssert.assertAll();
 
 

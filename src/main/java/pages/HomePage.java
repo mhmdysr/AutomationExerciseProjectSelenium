@@ -2,9 +2,7 @@ package pages;
 
 import base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.CommonLocators;
 
 public class HomePage extends BasePage {
@@ -17,6 +15,8 @@ public class HomePage extends BasePage {
     private final By subscriptionFiled=By.id("susbscribe_email");
     private final By subscriptionBtn=By.cssSelector("i[class='fa fa-arrow-circle-o-right']");
     private final By subscribedSuccessfulMsg=By.id("success-subscribe");
+
+    //Locators =>TC_18: View Category Products
 
 
 
@@ -41,6 +41,53 @@ public class HomePage extends BasePage {
     public String getSuccessSubscribeMessage(){
         return getText(subscribedSuccessfulMsg);
     }
+
+
+    //Test Case 18: View Category Products
+
+    private final By categoryHeader=By.xpath("//h2[text()='Category']");
+    private final By categoriesClass=By.xpath("//div[@class='panel-group category-products']");
+    private By getCategoryTypeByIndex(int index) {
+        return By.xpath("(//span[@class='badge pull-right'])["+index+"]");
+    }
+    public By getMainCategoryByIndex(int index) {
+        return By.cssSelector("[href='/category_products/" + index + "']");
+    }
+    private final By womenDressProductsText=By.cssSelector("[class='title text-center']");
+    private final By menJeansProductsText=By.cssSelector("[class='title text-center']");
+
+
+
+
+    public void scrollToCategoryHeader(){
+        scrollToElement(categoryHeader);
+    }
+    public Boolean areCategoriesDisplayed(){
+        return isElementDisplayed(categoriesClass);
+    }
+
+    public void clickWomenCategory(){
+        click(getCategoryTypeByIndex(1));
+
+    }
+    public void clickDressLink(){
+        click(getMainCategoryByIndex(1));
+    }
+
+    public Boolean isWomenDressProductsHeaderVisible(){
+        return isElementDisplayed(womenDressProductsText);
+    }
+    public void clickMenCategory(){
+        click(getCategoryTypeByIndex(2));
+
+    }
+    public void clickJeansLink(){
+       click( getMainCategoryByIndex(6));
+    }
+    public Boolean isMenJeansProductsTextVisible(){
+        return isElementDisplayed(menJeansProductsText);
+    }
+
 
 
 }

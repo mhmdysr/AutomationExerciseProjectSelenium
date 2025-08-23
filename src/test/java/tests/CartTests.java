@@ -4,9 +4,7 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.CartPage;
-import pages.HomePage;
-import pages.ProductPage;
+import pages.*;
 import utils.CommonMethods;
 
 public class CartTests extends BaseTest {
@@ -94,6 +92,26 @@ public class CartTests extends BaseTest {
         Assert.assertEquals(cartPage.getPriceToAddedProduct(0),"Rs. 500","The First Product Price not as expected ");
         Assert.assertEquals(cartPage.getQuantityToAddedProduct(0),"4","The First Product Quantity not as expected ");
         Assert.assertEquals(cartPage.getTotalPriceToAddedProduct(0),"Rs. 2000","The First Total Product Price not as expected ");
+
+
+    }
+
+    @Test
+    public void  tc_17_removeProductsFromCart(){
+        SoftAssert softAssert=new SoftAssert();
+        productPage = new ProductPage(driver);
+        cartPage = new CartPage(driver);
+        softAssert.assertTrue(productPage.isHomePageVisible(), "Home Page is Not Visible!");
+        productPage.goToProductsPage();
+        productPage.scrollToBrandsHeader();
+        productPage.hoverClickProductByIndex(1, 1);
+        productPage.clickViewCartByIndex(1);
+        cartPage.goToCartPage();
+        softAssert.assertTrue(cartPage.isCartPageDisplayed(), "Cart Page is Not Visible");
+
+        cartPage.removeAllProducts();
+        Assert.assertTrue(cartPage.isCartEmpty(),"Cart is Not Empty");
+
 
 
     }
