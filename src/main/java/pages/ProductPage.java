@@ -4,7 +4,7 @@ import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.CommonLocators;
 
@@ -55,6 +55,11 @@ public class ProductPage extends BasePage {
     }
     public void scrollToBrandsHeader(){
         scrollToElement(brandsHeader);
+    }
+    public void scrollToViewProductBtn(int index){
+        WebElement element = driverWait.until(ExpectedConditions.visibilityOfElementLocated(getViewProductByIndex(index)));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
     }
     public void clickViewProductByIndex(int index){
         click(getViewProductByIndex(index));
@@ -160,6 +165,44 @@ public class ProductPage extends BasePage {
     public void addToCartBtnInProductDetailsPage(){
         click(addToCartBtnInProductDetails);
     }
+
+
+    //TC_21: Add review on product
+
+    //Locators
+    private  final By  writeYourReviewLocator=By.cssSelector("li[class=\"active\"]");
+    private final   By reviewName=By.id("name");
+    private final   By reviewEmail=By.id("email");
+    private final   By reviewBody=By.cssSelector("textarea[id=\"review\"]");
+    private final   By reviewSubmitBtn=By.id("button-review");
+    private final   By msgAfterReview=By.xpath("//*[text()='Thank you for your review.']");
+
+
+    //Methods
+    public Boolean isWriteYourReviewTextDisplayed(){
+        return isElementDisplayed(writeYourReviewLocator);
+    }
+    public void addReviewDetails(String nameOfReview ,String emailOfReview ,String bodyOfReview ){
+        // scroll , clear , sendKeys
+
+        //send the Name of review
+        type(reviewName,nameOfReview);
+
+        //send the Email of review
+        type(reviewEmail,emailOfReview);
+
+        //send the review
+        type(reviewBody,bodyOfReview);
+
+    }
+    public void clickSubmitBtn(){
+        click(reviewSubmitBtn);
+
+    }
+    public Boolean isThankYouForYourReviewTextDisplayed(){
+      return isElementDisplayed(writeYourReviewLocator);
+    }
+
 
 
 

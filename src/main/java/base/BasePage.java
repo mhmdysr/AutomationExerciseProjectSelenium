@@ -20,6 +20,9 @@ public abstract class BasePage {
 
     }
 
+    protected BasePage() {
+    }
+
     public void click(By locator) {
         driverWait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
@@ -40,8 +43,11 @@ public abstract class BasePage {
         }
     }
     public void scrollToElement(By locator){
-        WebElement element=driverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
+//        WebElement element=driverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
+//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element)
+        WebElement element = driverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
 
     }
     public void scrollToBottomPage(){
@@ -84,6 +90,14 @@ public abstract class BasePage {
         actions
                 . moveToElement(driver.findElement(clickLocator))
                 .click()
+                .perform();
+    }
+
+    public void hoverOverElement(By hoverLocator, By clickLocator){
+        Actions actions=new Actions(driver);
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(hoverLocator));
+        actions
+                . moveToElement(driver.findElement(clickLocator))
                 .perform();
     }
 

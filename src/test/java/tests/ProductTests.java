@@ -67,4 +67,26 @@ public class ProductTests extends BaseTest {
     }
 
 
+    @Test
+    public void tc_21_addReviewOnProduct(){
+        SoftAssert softAssert=new SoftAssert();
+        productPage=new ProductPage(driver);
+        productPage.goToProductsPage();
+        softAssert.assertTrue(productPage.isAllProductsHeaderDisplayed(),"The ALL PRODUCTS page is not displayed successfully!");
+        productPage.scrollToViewProductBtn(1);
+        productPage.clickViewProductByIndex(1);
+
+        //Verify 'Write Your Review' is visible
+        softAssert.assertTrue(productPage.isWriteYourReviewTextDisplayed(),"Write Your Review Text is not displayed successfully!");
+
+        //7. Enter name, email and review
+        productPage.addReviewDetails("adidas running","adidas.user@test.com", "hello adidas Store , it's perfect product");
+        productPage.clickSubmitBtn();
+        softAssert.assertTrue(productPage.isThankYouForYourReviewTextDisplayed(),"Thank you for your review is not displayed successfully!");
+
+        softAssert.assertAll();
+    }
+
+
+
 }

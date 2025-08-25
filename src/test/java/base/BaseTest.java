@@ -6,6 +6,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.ConfigReader;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class BaseTest {
 
     protected WebDriver driver;
@@ -17,6 +21,7 @@ public class BaseTest {
         driver.get(ConfigReader.getProperty("baseUrl"));
 
     }
+
 
 
     @AfterMethod

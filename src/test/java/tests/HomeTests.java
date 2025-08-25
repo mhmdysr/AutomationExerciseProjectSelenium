@@ -5,12 +5,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.HomePage;
+import pages.ProductPage;
 import utils.CommonMethods;
 
 public class HomeTests extends BaseTest {
 
     HomePage subscriptionPage;
     HomePage categoryPage;
+    HomePage brandPage;
+    ProductPage productPage;
 
 
     @Test
@@ -59,6 +62,32 @@ public class HomeTests extends BaseTest {
 
 
     }
+
+    @Test
+    public void tc_19_viewAndCartBrandProducts(){
+
+        SoftAssert softAssert=new SoftAssert();
+        productPage=new ProductPage(driver);
+        brandPage=new HomePage(driver);
+        productPage.goToProductsPage();
+
+        brandPage.scrollToBrands();
+        Assert.assertTrue(brandPage.areBrandsVisible(),"Brands Text is Not Visible");
+
+        //6. Verify that user is navigated to Madame Brand page and brand products are displayed
+        brandPage.clickMadameBrand();
+        Assert.assertTrue(brandPage.isBrandMadameProductsTextVisible(),"Brand - Madame Products Text is Not Visible");
+
+        //7. Verify that user is navigated to Polo Brand page and brand products are displayed
+        brandPage.clickPoloBrand();
+        Assert.assertTrue(brandPage.isBrandPoloProductsTextVisible(),"Polo - Madame Products Text is Not Visible");
+
+        softAssert.assertAll();
+
+
+    }
+
+
 
 
 }
