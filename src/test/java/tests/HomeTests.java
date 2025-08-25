@@ -14,6 +14,8 @@ public class HomeTests extends BaseTest {
     HomePage categoryPage;
     HomePage brandPage;
     ProductPage productPage;
+    HomePage recommendationPage;
+
 
 
     @Test
@@ -72,20 +74,65 @@ public class HomeTests extends BaseTest {
         productPage.goToProductsPage();
 
         brandPage.scrollToBrands();
-        Assert.assertTrue(brandPage.areBrandsVisible(),"Brands Text is Not Visible");
+        softAssert.assertTrue(brandPage.areBrandsVisible(),"Brands Text is Not Visible");
 
         //6. Verify that user is navigated to Madame Brand page and brand products are displayed
         brandPage.clickMadameBrand();
-        Assert.assertTrue(brandPage.isBrandMadameProductsTextVisible(),"Brand - Madame Products Text is Not Visible");
+        softAssert.assertTrue(brandPage.isBrandMadameProductsTextVisible(),"Brand - Madame Products Text is Not Visible");
 
         //7. Verify that user is navigated to Polo Brand page and brand products are displayed
         brandPage.clickPoloBrand();
-        Assert.assertTrue(brandPage.isBrandPoloProductsTextVisible(),"Polo - Madame Products Text is Not Visible");
+        softAssert.assertTrue(brandPage.isBrandPoloProductsTextVisible(),"Polo - Madame Products Text is Not Visible");
 
         softAssert.assertAll();
 
 
     }
+    @Test
+    public void tc_22_addToCartFromRecommendedItems(){
+        SoftAssert softAssert=new SoftAssert();
+        recommendationPage=new HomePage(driver);
+        recommendationPage.scrollToRecommendedItemHeader();
+        softAssert.assertTrue(recommendationPage.isRecommendedItemsTextVisible(),"recommended Items Text is Not Visible!");
+
+        recommendationPage.clickAddToCartBtnFromRecommendationItemsByIndex(1);
+        recommendationPage.clickViewCartBtnFromRecommendationItems();
+        softAssert.assertTrue(recommendationPage.getRecommendedProductsSize()>0,"recommended Added products Lust Empty");
+
+        softAssert.assertAll();
+
+
+    }
+
+    @Test
+    public void tc_25_verifyScrollUpUsingArrowBtnAndScrollDownFunctionality(){
+        SoftAssert softAssert=new SoftAssert();
+        productPage=new ProductPage(driver);
+        subscriptionPage=new HomePage(driver);
+
+        softAssert.assertTrue(subscriptionPage.isHomePageVisible(),"Home Page is Not Visible!");
+        subscriptionPage.scrollDownToFooter();
+        softAssert.assertTrue(subscriptionPage.isSubscriptionTextVisible(),"Subscription Text is Not Visible!");
+        subscriptionPage.clickArrowBtnToMoveUpward();
+        softAssert.assertTrue(subscriptionPage.isHomePageVisible(),"The Full-Fledged practice website for Automation Engineers Text is Not Visible");
+
+        softAssert.assertAll();
+    }
+    @Test
+    public void tc_26_verifyScrollUpWithoutArrowBtnAndScrollDownFunctionality(){
+        SoftAssert softAssert=new SoftAssert();
+        productPage=new ProductPage(driver);
+        subscriptionPage=new HomePage(driver);
+
+        softAssert.assertTrue(subscriptionPage.isHomePageVisible(),"Home Page is Not Visible!");
+        subscriptionPage.scrollDownToFooter();
+        softAssert.assertTrue(subscriptionPage.isSubscriptionTextVisible(),"Subscription Text is Not Visible!");
+        subscriptionPage.scrollUpPageToTop();
+        softAssert.assertTrue(subscriptionPage.isHomePageVisible(),"The Full-Fledged practice website for Automation Engineers Text is Not Visible");
+
+        softAssert.assertAll();
+    }
+
 
 
 

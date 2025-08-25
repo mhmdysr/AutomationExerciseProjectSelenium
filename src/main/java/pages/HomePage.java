@@ -103,11 +103,11 @@ public class HomePage extends BasePage {
 
     //Test Case 19: View & Cart Brand Products
     private final By brandHeader = By.xpath("//h2[text()='Brands']");
-    private final By madameBrandLink = By.cssSelector("[href='/brand_products/Madame']");
 
     private By getSubBrandByIndex(int index) {
         return By.xpath("(//*[@class=\"nav nav-pills nav-stacked\"])/li[" + index + "]");
     }
+
     private final By brandMadameProductsText = By.xpath("//h2[text()='Brand - Madame Products']");
     private final By brandPoloProductsText = By.cssSelector("h2[class='title text-center']");
 
@@ -136,6 +136,63 @@ public class HomePage extends BasePage {
 
     public Boolean isBrandPoloProductsTextVisible() {
         return isElementDisplayed(brandPoloProductsText);
+
+    }
+
+    //Test Case 22: Add to cart from Recommended items
+    private final By recommendedItemHeader = By.xpath("//h2[text()='recommended items']");
+
+    private By getRecommendedAddToCartBtnByIndex(int index) {
+        return By.xpath("(//div[@id='recommended-item-carousel']//*[contains(text(),'Add to cart')])[" + index + "]");
+    }
+
+    private final By recommendedViewCartBtn = By.xpath("//*[text()='View Cart']");
+    private final By recommendedProductsClass = By.className("cart_product");
+
+
+    public void scrollToRecommendedItemHeader() {
+        scrollToElement(recommendedItemHeader);
+
+
+    }
+
+    public Boolean isRecommendedItemsTextVisible() {
+        try {
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(recommendedItemHeader));
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
+    }
+
+    public void clickAddToCartBtnFromRecommendationItemsByIndex(int index) {
+
+        click(getRecommendedAddToCartBtnByIndex(index));
+    }
+
+    public void clickViewCartBtnFromRecommendationItems() {
+
+        click(recommendedViewCartBtn);
+    }
+
+    public int getRecommendedProductsSize() {
+        return driver.findElements(recommendedProductsClass).size();
+    }
+
+
+    //TC_25: Verify Scroll Up using 'Arrow' button and Scroll Down functionality &&
+    //Test Case 26: Verify Scroll Up without 'Arrow' button and Scroll Down functionality
+
+    private final By arrowBtn = By.cssSelector("[class=\"fa fa-angle-up\"]");
+
+    public void clickArrowBtnToMoveUpward() {
+        click(arrowBtn);
+    }
+
+    public void scrollUpPageToTop() {
+        scrollToTopPage();
+
 
     }
 }

@@ -175,8 +175,6 @@ public class ProductPage extends BasePage {
     private final   By reviewEmail=By.id("email");
     private final   By reviewBody=By.cssSelector("textarea[id=\"review\"]");
     private final   By reviewSubmitBtn=By.id("button-review");
-    private final   By msgAfterReview=By.xpath("//*[text()='Thank you for your review.']");
-
 
     //Methods
     public Boolean isWriteYourReviewTextDisplayed(){
